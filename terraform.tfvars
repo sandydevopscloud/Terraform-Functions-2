@@ -1,6 +1,6 @@
 vpc_cidr_block     = "172.18.0.0/16"
 vpc_name           = "vpc-devops"
-environment        = "Prod"
+environment        = "DEV"
 key_name           = "sandy-pem"
 ec2_inst_type      = "t2.micro"
 azs                = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]

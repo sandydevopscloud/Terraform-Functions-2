@@ -1,5 +1,6 @@
 resource "aws_instance" "Private-Server" {
-  count                  = length(var.private_cidr_block)
+  # count                  = length(var.private_cidr_block)
+  count                  = var.environment == "PRD" ? 1 : 2 # Create 1 private if true, else 2 private instance.
   ami                    = lookup(var.amis, var.region_name)
   instance_type          = var.ec2_inst_type #"t3.micro"
   key_name               = var.key_name      #"sandy-pem"
@@ -7,10 +8,10 @@ resource "aws_instance" "Private-Server" {
   vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
 
   tags = {
-    Name       = "PRD-SRV-${count.index + 1}"
-    Env        = "PRD"
-    Owner      = "Sandy"
-    Costcenter = ""
+    Name        = "Private-SRV-${count.index + 1}"
+    environment = "PRD"
+    Owner       = "Sandy"
+    Costcenter  = ""
   }
   # user_data = <<-EOF
   #       #!/bin/bash

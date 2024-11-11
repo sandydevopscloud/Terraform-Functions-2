@@ -3,3 +3,4 @@
 .vscode/
 terraform.tfstate
 terraform.tfstate.backup
+sandy-pem.pem
